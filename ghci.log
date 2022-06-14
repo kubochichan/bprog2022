@@ -1,0 +1,344 @@
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-05-19 15:41:39.087855775
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-05-19 15:52:44.63347747
+>>> 23 + 5
+28
+2022-05-19 15:54:40.224642928
+>>> 3 + 2 * 5
+13
+2022-05-19 15:55:28.784767258
+>>> (3 + 2) * 5
+25
+2022-05-19 15:55:46.208087983
+>>> 5 - 4 - 8
+-7
+2022-05-19 15:56:00.497739587
+>>> sqrt 2
+1.4142135623730951
+2022-05-19 16:00:17.335131846
+>>> doublo 3
+
+<interactive>:6:1: error: Variable not in scope: doublo :: t0 -> t
+2022-05-19 16:02:28.918997725
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-05-26 15:02:13.953426535
+>>> maxBound :: Int
+9223372036854775807
+2022-05-26 15:03:35.319796283
+>>> 2 ^ minBound :: Int
+
+<interactive>:2:3: error:
+    • Ambiguous type variable ‘b0’ arising from a use of ‘^’
+      prevents the constraint ‘(Integral b0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘b0’ should be.
+      These potential instances exist:
+        instance Integral Integer -- Defined in ‘GHC.Real’
+        instance Integral Int -- Defined in ‘GHC.Real’
+        instance Integral Word -- Defined in ‘GHC.Real’
+        ...plus one instance involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the expression: 2 ^ minBound :: Int
+      In an equation for ‘it’: it = 2 ^ minBound :: Int
+
+<interactive>:2:5: error:
+    • Ambiguous type variable ‘b0’ arising from a use of ‘minBound’
+      prevents the constraint ‘(Bounded b0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘b0’ should be.
+      These potential instances exist:
+        instance Bounded Ordering -- Defined in ‘GHC.Enum’
+        instance Bounded () -- Defined in ‘GHC.Enum’
+        instance (Bounded a, Bounded b) => Bounded (a, b)
+          -- Defined in ‘GHC.Enum’
+        ...plus 17 others
+        ...plus two instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the second argument of ‘(^)’, namely ‘minBound’
+      In the expression: 2 ^ minBound :: Int
+      In an equation for ‘it’: it = 2 ^ minBound :: Int
+2022-05-26 15:05:41.990342072
+>>> 2 ^ 63 - 2
+9223372036854775806
+2022-05-26 15:06:21.991171533
+>>> 2 ^ 63 -1
+9223372036854775807
+2022-05-26 15:06:39.903098029
+>>> minbound :: Int
+
+<interactive>:5:1: error:
+    • Variable not in scope: minbound :: Int
+    • Perhaps you meant ‘minBound’ (imported from Prelude)
+2022-05-26 15:06:53.023736907
+>>> >>> :l src/First.hs
+
+<interactive>:6:1: error: parse error on input ‘>>>’
+2022-05-26 15:53:02.699042885
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+Ok, no modules loaded.
+2022-05-26 15:54:16.007924729
+>>>  :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-05-26 15:54:16.055963865
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+Ok, one module loaded.
+2022-05-26 15:56:02.676329586
+>>> double 3
+6
+2022-05-26 15:56:29.668763651
+>>> double 123
+246
+2022-05-26 15:56:39.551547867
+>>> double (1 + 3)
+8
+2022-05-26 15:57:02.255331617
+>>> double (1 + 2)
+6
+2022-05-26 15:57:19.064256791
+>>> :q
+Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-09 14:55:25.688314047
+>>> 2 + 3 * 4
+14
+2022-06-09 15:00:39.902905709
+>>> (2 + 3) * 4
+20
+2022-06-09 15:01:00.21970902
+>>> :i sqrt
+type Floating :: * -> Constraint
+class Fractional a => Floating a where
+  ...
+  sqrt :: a -> a
+  ...
+  	-- Defined in ‘GHC.Float’
+2022-06-09 15:01:18.649058275
+>>> sqrt (3 ^ 2 + 4 ^ 2)
+5.0
+2022-06-09 15:05:17.996994906
+>>> sqrt (25 :: Int)
+
+<interactive>:5:1: error:
+    • No instance for (Floating Int) arising from a use of ‘sqrt’
+    • In the expression: sqrt (25 :: Int)
+      In an equation for ‘it’: it = sqrt (25 :: Int)
+2022-06-09 15:08:21.354430317
+>>> sqrt (25 :: Double)
+5.0
+2022-06-09 15:09:43.616046206
+>>> sqrt 25
+5.0
+2022-06-09 15:11:54.148697175
+>>> hoge 25 :: Int
+
+<interactive>:8:1: error: Variable not in scope: hoge :: t0 -> Int
+2022-06-09 15:14:00.680514532
+>>> head [3, 1, 4, 1, 5]
+3
+2022-06-09 15:47:07.730973957
+>>> head[]
+*** Exception: Prelude.head: empty list
+2022-06-09 15:49:05.615771967
+>>> hoge = [3, 1, 4, 1, 5] :: [Int]
+2022-06-09 15:50:39.183709467
+>>> hoge
+[3,1,4,1,5]
+2022-06-09 15:51:51.961530393
+>>> head hoge
+3
+2022-06-09 15:52:10.708005564
+>>> tail hoge
+[1,4,1,5]
+2022-06-09 15:52:25.304170242
+>>> tail []
+*** Exception: Prelude.tail: empty list
+2022-06-09 15:53:17.285653946
+>>> hoge !! 0
+3
+2022-06-09 15:55:06.463142392
+>>> >>> hoge 2 !! hoge 
+
+<interactive>:17:1: error: parse error on input ‘>>>’
+2022-06-09 15:56:24.227518903
+>>> take 3 hoge
+[3,1,4]
+2022-06-09 15:57:11.856074716
+>>> hoge
+[3,1,4,1,5]
+2022-06-09 15:57:23.053469338
+>>> drop 3 hoge
+[1,5]
+2022-06-09 15:57:42.533568173
+>>> hoge 5 hoge
+
+<interactive>:21:1: error:
+    • Couldn't match expected type: t0 -> [Int] -> t
+                  with actual type: [Int]
+    • The function ‘hoge’ is applied to two value arguments,
+        but its type ‘[Int]’ has none
+      In the expression: hoge 5 hoge
+      In an equation for ‘it’: it = hoge 5 hoge
+    • Relevant bindings include it :: t (bound at <interactive>:21:1)
+2022-06-09 15:58:26.181113696
+>>> hoge !! 5
+*** Exception: Prelude.!!: index too large
+2022-06-09 15:59:00.053561557
+>>> take 10 hoge
+[3,1,4,1,5]
+2022-06-09 15:59:28.818230625
+>>> drop 10 hoge
+[]
+2022-06-09 16:00:36.858207671
+>>> length head
+
+<interactive>:25:1: error:
+    • No instance for (Foldable ((->) [a0]))
+        arising from a use of ‘length’
+    • In the expression: length head
+      In an equation for ‘it’: it = length head
+2022-06-09 16:01:04.221406023
+>>> length hoge
+5
+2022-06-09 16:01:15.036631108
+>>> length []
+0
+2022-06-09 16:01:30.225523044
+>>> sum hoge
+14
+2022-06-09 16:02:06.33706064
+>>> product hoge
+60
+2022-06-09 16:03:07.768209675
+>>> hoge ++ hoge
+[3,1,4,1,5,3,1,4,1,5]
+2022-06-09 16:05:09.71364562
+>>> reverse hoge
+[5,1,4,1,3]
+2022-06-09 16:05:39.09195543
+>>> :e src/First loaded.
+catn: src/First: openFile: does not exist (No such file or directory)
+2022-06-09 16:07:48.528688747
+>>> :load src/First loaded.
+target ‘loaded.’ is not a module name or a source file
+2022-06-09 16:07:48.574730279
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+Ok, no modules loaded.
+2022-06-09 16:08:58.549239949
+>>> :load src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-09 16:08:58.637228993
+>>> double 3 + 3
+9
+2022-06-09 16:09:17.097423697
+>>> double (3 + 3)
+12
+2022-06-09 16:11:19.782645107
+>>> :quit
+Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-13 22:09:46.557621948
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+Ok, no modules loaded.
+2022-06-13 22:10:19.861136086
+>>> :load src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-13 22:10:19.911669055
+>>> quadruple 3
+12
+2022-06-13 22:11:12.307354896
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-14 21:35:53.209816975
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+Ok, no modules loaded.
+2022-06-14 21:36:32.434212858
+>>> :load src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-14 21:36:32.50319064
+>>> quadruple 3
+12
+2022-06-14 21:37:03.721099117
+>>> git add .
+
+<interactive>:4:10: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+2022-06-14 21:37:24.504147678
+>>> git commit -m "update"
+
+<interactive>:5:1: error:
+    • Variable not in scope: git :: t1 -> a
+    • Perhaps you meant ‘it’ (line 3)
+
+<interactive>:5:5: error: Variable not in scope: commit
+
+<interactive>:5:13: error: Variable not in scope: m :: t0 -> a
+2022-06-14 21:38:01.499737008
+>>> git push
+
+<interactive>:6:1: error:
+    • Variable not in scope: git :: t0 -> t
+    • Perhaps you meant ‘it’ (line 3)
+
+<interactive>:6:5: error: Variable not in scope: push
+2022-06-14 21:38:19.481547519
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-14 22:31:09.624013075
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+Ok, no modules loaded.
+2022-06-14 22:31:41.744708424
+>>> :load src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-14 22:31:41.796377937
+>>> quadruple 3
+12
+2022-06-14 22:32:10.606343772
+>>> git add .
+
+<interactive>:4:10: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+2022-06-14 22:32:43.897447022
+>>> :quit
+Leaving GHCi.
