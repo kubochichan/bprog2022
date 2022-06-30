@@ -536,3 +536,245 @@ Ok, one module loaded.
 2022-06-16 16:16:08.130492229
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-23 14:56:23.958072591
+>>> :i Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num NominalDiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.NominalDiffTime’
+instance Num DiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.DiffTime’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+2022-06-23 14:56:37.466779054
+>>> 
+2022-06-23 14:57:07.205386333
+>>> 1 == 2
+False
+2022-06-23 15:06:23.163362219
+>>> 1 < 2
+True
+2022-06-23 15:06:32.557039425
+>>> 1 < 1
+False
+2022-06-23 15:06:39.09876451
+>>> 1 <= 2 
+True
+2022-06-23 15:06:54.496347529
+>>> 1>- 2
+
+<interactive>:7:2: error:
+    • Variable not in scope: (>-) :: t0 -> t1 -> t
+    • Perhaps you meant one of these:
+        ‘-’ (imported from Prelude), ‘>=’ (imported from Prelude),
+        ‘>>’ (imported from Prelude)
+2022-06-23 15:07:01.631233931
+>>> 1 >= 2
+False
+2022-06-23 15:07:10.93525685
+>>> 'a' < 'b'
+True
+2022-06-23 15:11:48.917894156
+>>> 'a' = 'B'
+2022-06-23 15:12:00.390762027
+>>> ' ' < 'a'
+True
+2022-06-23 15:12:22.387003354
+>>> 'ab' < 'b'
+
+<interactive>:12:1: error:
+    • Syntax error on 'ab'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'ab'
+2022-06-23 15:13:06.418029995
+>>> 1 /= 2
+True
+2022-06-23 15:16:07.401543522
+>>> 1 /= 1
+False
+2022-06-23 15:16:13.866279356
+>>> :i abs
+type Num :: * -> Constraint
+class Num a where
+  ...
+  abs :: a -> a
+  ...
+  	-- Defined in ‘GHC.Num’
+2022-06-23 15:30:24.619990483
+>>> abs
+
+<interactive>:16:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+2022-06-23 15:31:24.26067285
+>>> abs (-234)
+234
+2022-06-23 15:34:46.467033274
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-06-30 14:57:09.99981929
+>>> >>> [ x ^ 2 | x <- [1 .. 5] ]
+
+<interactive>:1:1: error: parse error on input ‘>>>’
+2022-06-30 15:02:17.663742538
+>>> [x^2|x<-[1..5]]
+[1,4,9,16,25]
+2022-06-30 15:03:49.114254792
+>>> map(^2)[1..5]
+[1,4,9,16,25]
+2022-06-30 15:06:15.902446964
+>>> >>> [x*2|x<-[1..5]]
+
+<interactive>:4:1: error: parse error on input ‘>>>’
+2022-06-30 15:12:35.523920375
+>>> [x*2|x<-[1..5]]
+[2,4,6,8,10]
+2022-06-30 15:13:14.152601378
+>>> [x'div'2|x<-[1..5]]
+
+<interactive>:6:2: error: Variable not in scope: x'div'2
+2022-06-30 15:13:55.744065118
+>>> [x'div'2|x<-[1..5]]
+
+<interactive>:7:2: error: Variable not in scope: x'div'2
+2022-06-30 15:14:41.446575268
+>>> [x`div`2|x<-[1..5]]
+[0,1,1,2,2]
+2022-06-30 15:15:13.668121611
+>>> [x`diModv`2|x<-[1..5]]
+
+<interactive>:9:3: error:
+    • Variable not in scope: diModv :: t0 -> t1 -> a
+    • Perhaps you meant ‘divMod’ (imported from Prelude)
+2022-06-30 15:15:54.49062187
+>>> [x`divMod`2\x<-[1..5]]
+
+<interactive>:10:14: error:
+    parse error on input ‘<-’
+    Perhaps this statement should be within a 'do' block?
+2022-06-30 15:16:27.192890042
+>>> [x`diModv`2|x<-[1..5]]
+
+<interactive>:11:3: error:
+    • Variable not in scope: diModv :: t0 -> t1 -> a
+    • Perhaps you meant ‘divMod’ (imported from Prelude)
+2022-06-30 15:16:48.541572063
+>>> [x`diMod`2|x<-[1..5]]
+
+<interactive>:12:3: error:
+    • Variable not in scope: diMod :: t0 -> t1 -> a
+    • Perhaps you meant ‘divMod’ (imported from Prelude)
+2022-06-30 15:17:20.92031894
+>>> [x`divMod`2|x<-[1..5]]
+[(0,1),(1,0),(1,1),(2,0),(2,1)]
+2022-06-30 15:17:35.604834575
+>>> [(x,y)|x<-"abc",y<-[4,5]]
+[('a',4),('a',5),('b',4),('b',5),('c',4),('c',5)]
+2022-06-30 15:21:17.107319282
+>>> [(x,y)|y<-[4,5],x<-"abc"]
+[('a',4),('b',4),('c',4),('a',5),('b',5),('c',5)]
+2022-06-30 15:22:01.836697916
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x) 
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave  xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [x | xs <- xss, x <- xs]
+Ok, no modules loaded.
+2022-06-30 15:30:00.031126132
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:30:00.096280151
+>>> [1|_<-[1..5]]
+[1,1,1,1,1]
+2022-06-30 15:47:38.657279617
+>>> mylength['a'..'z']
+
+<interactive>:19:1: error:
+    • Variable not in scope: mylength :: [Char] -> t
+    • Perhaps you meant ‘length’ (imported from Prelude)
+2022-06-30 15:51:30.995652959
+>>> mylenght ['a' .. 'z']
+
+<interactive>:20:1: error:
+    Variable not in scope: mylenght :: [Char] -> t
+2022-06-30 15:52:21.251655599
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x) 
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product [1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave  xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [x | xs <- xss, x <- xs]
+  24  
+  25  mylength :: [a] -> Int
+  26  mylength xs = sum [ 1 | _ <- xs ]
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:53:14.389788043
+>>> mylength['a'..'z']
+26
+2022-06-30 15:53:59.700308763
+>>> ['a'..'z']
+"abcdefghijklmnopqrstuvwxyz"
+2022-06-30 15:54:22.086951859
+>>> ['あ'..'ん']
+"\12354\12355\12356\12357\12358\12359\12360\12361\12362\12363\12364\12365\12366\12367\12368\12369\12370\12371\12372\12373\12374\12375\12376\12377\12378\12379\12380\12381\12382\12383\12384\12385\12386\12387\12388\12389\12390\12391\12392\12393\12394\12395\12396\12397\12398\12399\12400\12401\12402\12403\12404\12405\12406\12407\12408\12409\12410\12411\12412\12413\12414\12415\12416\12417\12418\12419\12420\12421\12422\12423\12424\12425\12426\12427\12428\12429\12430\12431\12432\12433\12434\12435"
+2022-06-30 15:54:45.866770588
+>>> putStrLn it
+あぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん
+2022-06-30 15:55:06.822451087
+>>> :q
+Leaving GHCi.
