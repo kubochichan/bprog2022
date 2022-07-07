@@ -778,3 +778,36 @@ Ok, one module loaded.
 2022-06-30 15:55:06.822451087
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-07-07 16:05:17.661857494
+>>> :e src/Caesar.hs
+   1  module Caersar where
+   2  
+   3  import Data.Char
+Ok, no modules loaded.
+2022-07-07 16:05:43.048318035
+>>> :l src/Caesar.hs
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-07 16:05:43.103091389
+>>> ord 'A'
+65
+2022-07-07 16:06:00.962951084
+>>> ord 'a'
+97
+2022-07-07 16:06:10.326248501
+>>> >>> import Deta.Char
+
+<interactive>:5:1: error: parse error on input ‘>>>’
+2022-07-07 16:12:14.605750853
+>>> import Deta.Char
+
+<no location info>: error:
+    Could not find module ‘Deta.Char’
+    Perhaps you meant Data.Char (from base-4.15.1.0)
+2022-07-07 16:12:37.49471217
+>>> import Data.Char
+2022-07-07 16:13:31.390542013
+>>> :q
+Leaving GHCi.
