@@ -811,3 +811,362 @@ Ok, one module loaded.
 2022-07-07 16:13:31.390542013
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/airi/bprog2022/.ghci
+2022-07-14 15:11:23.746291871
+>>> :e src/Caesar.hs
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c
+Ok, no modules loaded.
+2022-07-14 15:11:47.295640946
+>>> :l src/Caesar.hs
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:11:47.360305827
+>>> let2int 'a'
+97
+2022-07-14 15:12:49.419677074
+>>> let2int 'z'
+122
+2022-07-14 15:13:37.608054488
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c
+Ok, one module loaded.
+2022-07-14 15:15:26.683071402
+>>> let2int 'a'
+97
+2022-07-14 15:15:42.489522896
+>>> let2int 'z'
+122
+2022-07-14 15:16:02.972321312
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:16:26.165470635
+>>> let2int 'a'
+0
+2022-07-14 15:16:42.939915042
+>>> let2Int 'z'
+
+<interactive>:10:1: error:
+    • Variable not in scope: let2Int :: Char -> t
+    • Perhaps you meant ‘let2int’ (line 6)
+2022-07-14 15:16:54.221875372
+>>> let2int 'z'
+25
+2022-07-14 15:17:04.332458628
+>>> ord 'a'
+97
+2022-07-14 15:19:34.177676266
+>>> chr 97
+'a'
+2022-07-14 15:19:40.618625374
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let i = chr (i + ord 'a')
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:20:14.304888338
+>>> int2let 0
+'a'
+2022-07-14 15:20:23.283424538
+>>> int2let 25
+'z'
+2022-07-14 15:20:33.536881217
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let i = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15      
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+
+src/Caesar.hs:9:28: error: Variable not in scope: n :: Int
+  |
+9 | int2let i = chr (ord 'a' + n)
+  |                            ^
+Failed, no modules loaded.
+2022-07-14 15:27:35.326879462
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:28:08.358383717
+>>> shift 3 'a'
+'d'
+2022-07-14 15:28:24.610104012
+>>> shift (-3) 'd'
+'a'
+2022-07-14 15:28:43.819844958
+>>> shift 3 'z'
+'c'
+2022-07-14 15:30:20.111423896
+>>> shift 3 ' '
+' '
+2022-07-14 15:33:09.178317065
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:36:25.079379137
+>>> encode 3 "haskell is fun"
+"kdvnhoo lv ixq"
+2022-07-14 15:37:01.871243129
+>>> encode 3 "haskell is fun"
+"kdvnhoo lv ixq"
+2022-07-14 15:48:44.283767038
+>>> it
+"kdvnhoo lv ixq"
+2022-07-14 15:48:54.090971326
+>>> encode (-3) it
+"haskell is fun"
+2022-07-14 15:49:09.419845327
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+  18  
+  19  table :: [Float]
+  20  table = [ 8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0
+  21          , 0.2, 0.8, 4.0, 2.4,  6.7, 7.5, 1.9, 0.1, 6.0
+  22          , 6.3, 9.0, 2.8, 1.0,  2.4, 0.2, 2.0, 0.1
+  23          ]
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 15:59:22.965588305
+>>> length table
+26
+2022-07-14 15:59:52.163494257
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+  18  
+  19  table :: [Float]
+  20  table = [ 8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0
+  21          , 0.2, 0.8, 4.0, 2.4,  6.7, 7.5, 1.9, 0.1, 6.0
+  22          , 6.3, 9.0, 2.8, 1.0,  2.4, 0.2, 2.0, 0.1
+  23          ]
+  24  
+  25  percent :: Int -> Int-> Float
+  26  percent n m = n / m * 100
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+
+src/Caesar.hs:26:15: error:
+    • Couldn't match expected type ‘Float’ with actual type ‘Int’
+    • In the expression: n / m * 100
+      In an equation for ‘percent’: percent n m = n / m * 100
+   |
+26 | percent n m = n / m * 100
+   |               ^^^^^^^^^^^
+Failed, no modules loaded.
+2022-07-14 16:06:55.809865765
+>>> percent 5 15
+
+<interactive>:31:1: error:
+    Variable not in scope: percent :: t0 -> t1 -> t
+2022-07-14 16:09:26.36937341
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+  18  
+  19  table :: [Float]
+  20  table = [ 8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0
+  21          , 0.2, 0.8, 4.0, 2.4,  6.7, 7.5, 1.9, 0.1, 6.0
+  22          , 6.3, 9.0, 2.8, 1.0,  2.4, 0.2, 2.0, 0.1
+  23          ]
+  24  
+  25  percent :: Int -> Int-> Float
+  26  percent n m = (formIntegral n / formIntegral m) * 100
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+
+src/Caesar.hs:26:16: error:
+    • Variable not in scope: formIntegral :: Int -> Float
+    • Perhaps you meant ‘fromIntegral’ (imported from Prelude)
+   |
+26 | percent n m = (formIntegral n / formIntegral m) * 100
+   |                ^^^^^^^^^^^^
+
+src/Caesar.hs:26:33: error:
+    • Variable not in scope: formIntegral :: Int -> Float
+    • Perhaps you meant ‘fromIntegral’ (imported from Prelude)
+   |
+26 | percent n m = (formIntegral n / formIntegral m) * 100
+   |                                 ^^^^^^^^^^^^
+Failed, no modules loaded.
+2022-07-14 16:09:37.638129976
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+  18  
+  19  table :: [Float]
+  20  table = [ 8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0
+  21          , 0.2, 0.8, 4.0, 2.4,  6.7, 7.5, 1.9, 0.1, 6.0
+  22          , 6.3, 9.0, 2.8, 1.0,  2.4, 0.2, 2.0, 0.1
+  23          ]
+  24  
+  25  percent :: Int -> Int-> Float
+  26  percent n m = (fromIntegral n / fromIntegral m) * 100
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 16:10:04.020079231
+>>> percent 5 15
+33.333336
+2022-07-14 16:10:18.321129699
+>>> :e
+   1  module Caersar where
+   2  
+   3  import Data.Char
+   4  
+   5  let2int :: Char -> Int
+   6  let2int c = ord c - ord 'a'
+   7  
+   8  int2let :: Int -> Char
+   9  int2let n = chr (ord 'a' + n)
+  10  
+  11  shift :: Int -> (Char -> Char)
+  12  shift n c
+  13      | isLower c = int2let ((let2int c + n) `mod` 26)
+  14      | otherwise = c
+  15  
+  16  encode :: Int -> (String -> String)
+  17  encode n xs = [ shift n x | x <- xs ]
+  18  
+  19  table :: [Float]
+  20  table = [ 8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0
+  21          , 0.2, 0.8, 4.0, 2.4,  6.7, 7.5, 1.9, 0.1, 6.0
+  22          , 6.3, 9.0, 2.8, 1.0,  2.4, 0.2, 2.0, 0.1
+  23          ]
+  24  
+  25  percent :: Int -> Int-> Float
+  26  percent n m = (fromIntegral n / fromIntegral m) * 100
+  27  
+  28  count :: Char -> (String -> Int)
+  29  count x xs = length [ x' | x' <- xs, x == x']
+[1 of 1] Compiling Caersar          ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-14 16:14:43.154522344
+>>> count 's' "Mississippi"
+4
+2022-07-14 16:15:50.996697047
+>>> :q
+Leaving GHCi.
